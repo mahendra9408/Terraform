@@ -21,13 +21,12 @@ jobs:
       - name: Configure Google Cloud credentials
         run: echo "$GCP_SERVICE_ACCOUNT_KEY" > /tmp/gcp_credentials.json
 
-      - name: Debug credentials file
-        run: cat /tmp/gcp_credentials.json
-
-      - name: Initialize Terraform
+      - name: Debug terraform init
         run: |
-          terraform init \
-            -backend-config="credentials=/tmp/gcp_credentials.json"
+          echo "Contents of gcp_credentials.json:"
+          cat /tmp/gcp_credentials.json
+          echo "Running terraform init..."
+          terraform init -backend-config="credentials=/tmp/gcp_credentials.json"
 
       - name: Plan Terraform
         run: terraform plan
