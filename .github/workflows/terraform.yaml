@@ -26,7 +26,7 @@ jobs:
           echo "Contents of gcp_credentials.json:"
           cat /tmp/gcp_credentials.json
           echo "Running terraform init..."
-          terraform init -backend-config="credentials=/tmp/gcp_credentials.json"
+          terraform init
 
       - name: Plan Terraform
         run: terraform plan
